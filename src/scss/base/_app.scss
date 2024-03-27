@@ -17,10 +17,20 @@
     grid-template-rows: 10vh auto 10vh;
     grid-template-columns: 1fr;
     .content {
-       margin:0 5rem ;
+       margin:0 5rem;
        border: 0.5px solid rgba(255,255,255,0.203);
        border-top: none; 
        border-bottom: none;
-       height: 80vh;
+       background-color: rgba(255,255,255,0.052);
+       overflow: hidden;
+       padding-bottom: 10rem;
+    }
+}
+
+::-webkit-scrollbar{
+    background-color: transparent;
+    width: 0.4rem;
+    &-thumb{
+        background-color: rgba(219,219,219,0.557);
     }
 }
