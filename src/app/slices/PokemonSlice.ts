@@ -22,13 +22,15 @@ export const PokemonSlice = createSlice({
                 state.compareQueue.unshift(action.payload);
             }
         },
-        removeFromCompare:(state,action)=>{
-            const index = state.compareQueue.findIndex((pokemon:generatedPokemonType)=>pokemon.id===action.payload.id);
+        removeFromCompare: (state, action) => {
+            const index = state.compareQueue.findIndex(
+              (pokemon: generatedPokemonType) => pokemon.id === action.payload.id
+            );
             const queue = [...state.compareQueue];
-            queue.slice(index,1);
+            queue.splice(index, 1);
             state.compareQueue = queue;
-        }
-    },
+          },
+        },
     extraReducers: (builder) => {
         builder.addCase(getInitialPokemonData.fulfilled, (state,action)=> {
             state.allPokemon = action.payload
