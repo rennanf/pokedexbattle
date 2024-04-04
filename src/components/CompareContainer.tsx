@@ -6,6 +6,7 @@ import {pokemonTypes} from "../utils/getPokemonTypes";
 import { removeFromCompare } from "../app/slices/PokemonSlice";
 import { useNavigate } from "react-router-dom";
 
+
 function CompareContainer({
     pokemon = undefined,
     isEmpty = false,

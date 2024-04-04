@@ -6,6 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { addToCompare } from "../app/slices/PokemonSlice";
 import { setToast } from "../app/slices/AppSlice";
+import { addPokemonToList } from "../app/reducers/addPokemonToList";
+import { removePokemon } from "../app/reducers/removePokemonFromUserList";
+
 
 function PokemonCardGrid({pokemons}: {pokemons: userPokemonsType[]}){
     const location = useLocation();
@@ -20,8 +23,8 @@ function PokemonCardGrid({pokemons}: {pokemons: userPokemonsType[]}){
             return (<div className="pokemon-card" key={data.id}>
                     <div className="pokemon-card-list"> 
                         {location.pathname.includes("/pokemon") ||location.pathname.includes("/search") ?(
-                        <FaPlus className="plus"/> 
-                        ) : ( <FaTrash className="trash"/>)}
+                        <FaPlus className="plus" onClick={()=>dispatch(addPokemonToList(data))}/> 
+                        ) : ( <FaTrash className="trash" onClick={async ()=> await dispatch(removePokemon({id: data.firebaseId!}))}/>)}
                     </div>
                     <div className="pokemon-card-compare">
                         <IoGitCompare onClick={()=>{dispatch(addToCompare(data))
@@ -36,7 +39,7 @@ function PokemonCardGrid({pokemons}: {pokemons: userPokemonsType[]}){
                             // console.log(keys)
                             return (
                                 <div className="pokemon-card-types-type" key={index}>
-                                    <img src={type[keys[0]].image} alt="pokemon type" className="pokemon-card-types-type-image" loading="lazy" />
+                                    {<img src={type[keys[0]].image} alt="pokemon type" className="pokemon-card-types-type-image" loading="lazy" />}
                                     <h6 className="pokemon-card-types-type-text">{keys[0]}</h6>
                                 </div>
                             )

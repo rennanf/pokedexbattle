@@ -14,13 +14,22 @@ import { ToastContainer, ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAppSelector } from "./app/hooks";
 import { useDispatch } from "react-redux";
-import { clearToasts } from "./app/slices/AppSlice";
+import { clearToasts, setUserStatus } from "./app/slices/AppSlice";
+import { onAuthStateChanged } from "firebase/auth";
+import { firebaseAuth } from "./utils/FirebaseConfig";
 
 
 function App() {
 
   const {toasts} = useAppSelector(({app})=>app);
   const dispatch = useDispatch();
+  useEffect(()=>{
+    onAuthStateChanged(firebaseAuth,(currentUser)=>{
+      if(currentUser) {
+        dispatch(setUserStatus({email:currentUser.email}))
+      }
+    })
+  },[dispatch])
 
   useEffect(()=>{
     if(toasts.length){

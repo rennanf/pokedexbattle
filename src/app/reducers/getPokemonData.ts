@@ -27,7 +27,7 @@ export const getPokemonData = createAsyncThunk("pokemon/randomPokemon",async(pok
             let image: string = images[data.id];
             if(!image){
                 // @ts-expect-error
-                image = defaultImages[data.id];
+                image = defaultImages[data.id]; 
             }
 
             if (image) {
