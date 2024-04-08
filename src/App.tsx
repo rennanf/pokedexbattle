@@ -58,7 +58,7 @@ function App() {
         <Route element={<About />} path="/About" />
         <Route element={<Compare />} path="/compare" />
         <Route element={<Pokemon />} path="/pokemon/:id" />
-        <Route element={<Navigate to="/pokemon/1"/>} path="*"/>
+        <Route element={<Navigate to="/pokemon/"/>} path="*"/>
       </Routes>
       <Footer />
     </div>

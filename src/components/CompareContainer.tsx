@@ -5,6 +5,7 @@ import { useAppDispatch } from "../app/hooks";
 import {pokemonTypes} from "../utils/getPokemonTypes";
 import { removeFromCompare } from "../app/slices/PokemonSlice";
 import { useNavigate } from "react-router-dom";
+import { addPokemonToList } from "../app/reducers/addPokemonToList";
 
 
 function CompareContainer({
@@ -129,7 +130,7 @@ function CompareContainer({
             </div>
           </div>
           <div className="compare-action-buttons">
-            <button className="compare-btn">Adicionar</button>
+            <button className="compare-btn" onClick={()=>dispatch(addPokemonToList(pokemon))}>Adicionar</button>
             <button className="compare-btn" onClick={()=>navigate(`/pokemon/${pokemon.id}`)}>Detalhes</button>
             <button className="compare-btn" onClick={()=> dispatch(removeFromCompare({id: pokemon.id}))}>Remover</button>
           </div>
